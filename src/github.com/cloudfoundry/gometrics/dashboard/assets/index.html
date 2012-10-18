@@ -1,0 +1,108 @@
+<html>
+  <head>
+    <title>{{.Name}} - Metrics Dashboard</title>
+    <style>
+      * {
+        font-family: sans-serif;
+        font-size: 10pt;
+      }
+
+      tr:nth-child(even){
+        background-color:#e0e0e0
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      td,th {
+        border-left: 1px solid black;
+        padding-left: 3px;
+        padding-right: 3px;
+      }
+
+      th:first-child,
+      td:first-child{
+        border-left: 0;
+      }
+
+      div.horizon > canvas {
+        display: block;
+      }
+      div.horizon > span.value {
+        position: relative;
+        left: 20px;
+      }
+
+      div.graph{
+        float: left;
+        width: 400px;
+      }
+
+      canvas#heatmap{
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h3>{{.Name}} - Metrics Dashboard</h3>
+    <p>Usage: Click on a checkbox to show/hide the metric.
+    Click on a table cell to show its corresponding graph.
+    Not all table cells have graphs. Clicking on a Distribution's name
+    will show its heatmap. Clicking on its count will show a smoothed
+    histogram.
+    </p>
+    <button id="hidehides"></button>
+    <div id="hides" style="display:none"></div>
+    <div id="metrics">
+      <h3>Counters</h3>
+      <table id="counters">
+        <tr id="header"><th>Name</th><th>Value</th></tr>
+      </table>
+      <h3>Distributions</h3>
+      <table id="distributions">
+        <tr id="header">
+          <th>Name</th>
+          <th>Count</th>
+          <th>Mean</th>
+          <th>Variance</th>
+          <th>StdDev</th>
+          <th>Skewness</th>
+          <th>Kurtosis</th>
+          <th>Min</th>
+          <th>Max</th>
+          <th>Median</th>
+          <th>25%</th>
+          <th>75%</th>
+          <th>95%</th>
+          <th>99%</th>
+          <th>99.9%</th>
+        </tr>
+      </table>
+      <h3>Gauges</h3>
+      <table id="gauges">
+        <tr id="header"><th>Name</th><th>Value</th></tr>
+      </table>
+      <h3>Meters</h3>
+      <table id="meters">
+        <tr id="header">
+          <th>Name</th><th>Value</th><th>1 min</th>
+          <th>5 min</th><th>15 min</th><th>Rates</th>
+          <th>1 min</th><th>5 min</th><th>15 min</th>
+          <th>Updated</th>
+        </tr>
+      </table>
+    </div>
+    <h3>Graphs</h3>
+    <div id="graphs"></div>
+    <script src="/js?n=d3"></script>
+    <script src="/js?n=jquery"></script>
+    <script src="/js?n=cubism"></script>
+    <script src="/js?n=masonry"></script>
+    <script src="/js?n=science"></script>
+    <script src="/js?n=graphs"> </script>
+    <script src="/js?n=main"> </script>
+  </body>
+</html>
