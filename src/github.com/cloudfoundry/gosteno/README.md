@@ -7,31 +7,28 @@ Gosteno is a golang implementation of the
 steno has a very similar feature set with orignal version.
 
 ## Getting started
+	import (
+		steno "gosteno"
+		"os"
+	)
 
-    import (
-      steno "gosteno"
-      "os"
-  )
-
-  func main() {
-      c := &steno.Config{
-      Sinks: []steno.Sink{
-          steno.NewFileSink("./a.log"),
-          steno.NewIOSink(os.Stdout),
-          steno.NewSyslogSink(),
-      },
-      Level:     steno.LOG_INFO,
-      Codec:     steno.JSON_CODEC,
-      Port:      8080,
-      EnableLOC: true,
-    }
-
-      steno.Init(c)
-      logger := steno.NewLogger("test")
-      t := steno.NewTaggedLogger(logger, map[string]string{"foo": "bar", "hello": "world"})
-      t.Info("Hello")
-  }
-
+	func main() {
+		c := &steno.Config{
+			Sinks: []steno.Sink{
+				steno.NewFileSink("./a.log"),
+				steno.NewIOSink(os.Stdout),
+				steno.NewSyslogSink(),
+			},
+			Level:     steno.LOG_INFO,
+			Codec:     steno.JSON_CODEC,
+			Port:      8080,
+			EnableLOC: true,
+		}
+		steno.Init(c)
+		logger := steno.NewLogger("test")
+		t := steno.NewTaggedLogger(logger, map[string]string{"foo": "bar", "hello": "world"})
+		t.Info("Hello")
+	}
 ## Using gerrit
 
     $ export GOPATH=~/gocode
