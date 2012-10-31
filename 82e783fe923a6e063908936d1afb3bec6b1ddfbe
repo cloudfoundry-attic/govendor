@@ -1,0 +1,7 @@
+Code-Review+2: Pieter Noordhuis <pnoordhuis@rbcon.com>
+Verified+1: Pieter Noordhuis <pnoordhuis@rbcon.com>
+Submitted-by: Jeff Li <jeffli@rbcon.com>
+Submitted-at: Wed, 31 Oct 2012 09:55:50 +0000
+Reviewed-on: http://reviews.cloudfoundry.org/10561
+Project: govendor
+Branch: refs/heads/master
