@@ -2,6 +2,10 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+// Package spdy implements SPDY protocol which is described in
+// draft-mbelshe-httpbis-spdy-00.
+//
+// http://tools.ietf.org/html/draft-mbelshe-httpbis-spdy-00
 package spdy
 
 import (
@@ -311,6 +315,7 @@ const (
 	InvalidControlFrame        ErrorCode = "invalid control frame"
 	InvalidDataFrame           ErrorCode = "invalid data frame"
 	InvalidHeaderPresent       ErrorCode = "frame contained invalid header"
+	ZeroStreamId               ErrorCode = "stream id zero is disallowed"
 )
 
 // Error contains both the type of error and additional values. StreamId is 0
