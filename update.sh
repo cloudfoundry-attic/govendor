@@ -61,4 +61,5 @@ else
   update code.google.com/p/go.net/ipv4
   update code.google.com/p/go.net/spdy
   update code.google.com/p/go.net/websocket
+  update github.com/cloudfoundry/gosteno
 fi
