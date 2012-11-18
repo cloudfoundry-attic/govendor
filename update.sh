@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GOPATH=$(dirname $0)
+go=$(readlink -nf bin/go)
 
 function revision() {
   pushd src > /dev/null
@@ -46,7 +46,7 @@ function revision() {
 
 function update() {
   echo -n "Updating $1... "
-  go get -u -d $1
+  $go get -u -d $1
 
   echo $(revision $1) > src/$1.revision
   cat src/$1.revision

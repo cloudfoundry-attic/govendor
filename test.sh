@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GOPATH=$(readlink -nf $(dirname $0)):$GOPATH
+go=$(readlink -nf bin/go)
 
 for i in $(find src -name '*_test.go' | xargs -n1 dirname | uniq)
 do
@@ -9,7 +9,7 @@ do
   echo
   echo "$i:"
 
-  go test
+  $go test
 
   popd > /dev/null
 done
