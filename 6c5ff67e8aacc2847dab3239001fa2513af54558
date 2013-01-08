@@ -1,0 +1,8 @@
+Code-Review+2: Nicholas Kushmerick <nicholask@vmware.com>
+Verified+1: Nicholas Kushmerick <nicholask@vmware.com>
+Code-Review+1: Jeff Li <jeffli@rbcon.com>
+Submitted-by: Pieter Noordhuis <pnoordhuis@rbcon.com>
+Submitted-at: Tue, 08 Jan 2013 21:41:36 +0000
+Reviewed-on: http://reviews.cloudfoundry.org/13043
+Project: govendor
+Branch: refs/heads/master
