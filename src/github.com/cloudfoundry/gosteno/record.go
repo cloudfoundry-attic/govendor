@@ -1,29 +1,39 @@
 package steno
 
 import (
+	"os"
 	"runtime"
 	"strings"
 	"time"
 )
 
-// FIXME: Missing fields
 type Record struct {
-	Timestamp float64
-	Message   string
-	Level     LogLevel
-	Data      map[string]string
-	File      string
-	Method    string
-	Line      int
+	Timestamp float64           `json:"timestamp"`
+	Pid       int               `json:"process_id"`
+	Source    string            `json:"source"`
+	Level     LogLevel          `json:"log_level"`
+	Message   string            `json:"message"`
+	Data      map[string]string `json:"data"`
+	File      string            `json:"file"`
+	Line      int               `json:"line"`
+	Method    string            `json:"method"`
 }
 
-func NewRecord(level LogLevel, message string, data map[string]string) *Record {
-	record := new(Record)
+var pid int
 
-	record.Timestamp = float64(time.Now().UnixNano()) / 1000000000
-	record.Message = message
-	record.Level = level
-	record.Data = data
+func init() {
+	pid = os.Getpid()
+}
+
+func NewRecord(s string, l LogLevel, m string, d map[string]string) *Record {
+	r := &Record{
+		Timestamp: float64(time.Now().UnixNano()) / 1000000000,
+		Pid:       pid,
+		Source:    s,
+		Level:     l,
+		Message:   m,
+		Data:      d,
+	}
 
 	if config.EnableLOC {
 		var function *runtime.Func
@@ -39,10 +49,10 @@ func NewRecord(level LogLevel, message string, data map[string]string) *Record {
 				break
 			}
 		}
-		record.File = file
-		record.Method = function.Name()
-		record.Line = line
+		r.File = file
+		r.Line = line
+		r.Method = function.Name()
 	}
 
-	return record
+	return r
 }
