@@ -1,6 +1,6 @@
 #!/bin/bash
 
-go=$(readlink -nf bin/go)
+go=$PWD/bin/go
 
 function revision() {
   pushd src > /dev/null
