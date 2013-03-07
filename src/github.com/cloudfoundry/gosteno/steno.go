@@ -33,10 +33,6 @@ func Init(c *Config) {
 		}
 	}
 
-	if config.Port > 0 {
-		initHttpServer(config.Port)
-	}
-
 	for name, _ := range loggers {
 		loggers[name] = nil
 	}
@@ -46,20 +42,19 @@ func NewLogger(name string) Logger {
 	loggersMutex.Lock()
 	defer loggersMutex.Unlock()
 
-	logger := loggers[name]
+	l := loggers[name]
+	if l == nil {
+		bl := &BaseLogger{
+			name:  name,
+			sinks: config.Sinks,
+			level: computeLevel(name),
+		}
 
-	if logger == nil {
-		baseLogger := new(BaseLogger)
-
-		baseLogger.name = name
-		baseLogger.sinks = config.Sinks
-		baseLogger.level = computeLevel(name)
-
-		logger = baseLogger
-		loggers[name] = logger
+		loggers[name] = bl
+		l = bl
 	}
 
-	return logger
+	return Logger{l}
 }
 
 func loggersInJson() string {
